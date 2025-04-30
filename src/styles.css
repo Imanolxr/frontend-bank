@@ -1,0 +1,41 @@
+/* Reset básico para consistencia entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+
+  
+  /* Elimina subrayado en enlaces por defecto */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Botones coherentes */
+  button {
+    font-family: inherit;
+    font-size: 14px;
+  }
+  
+  /* Inputs uniformes */
+  input, select, textarea {
+    font-family: inherit;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url('/assets/images/suquia logo.jpg');
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    z-index: 0;
+  }
+  
+  

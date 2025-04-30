@@ -1,0 +1,7 @@
+.main-content {
+  margin-left: 250px; /* Deja espacio para el sidebar */
+  margin-top: 64px;   /* Deja espacio para el navbar */
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}

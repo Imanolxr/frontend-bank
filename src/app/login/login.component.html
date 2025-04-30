@@ -1,0 +1,49 @@
+<div class="login-page">
+
+    <h1 class="welcome-title">Bienvenido a Banco Suquia</h1>
+    
+    <div class="login-container">
+    
+  
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+          <h2>Login</h2>
+      
+          <label for="cardNumber">Número de Tarjeta</label>
+          <input
+            id="cardNumber"
+            type="text"
+            name="cardNumber"
+            [(ngModel)]="cardNumber"
+            pattern="^[0-9]{16}$"
+            maxlength="16"
+            required
+            #cardNumberRef="ngModel"
+          />
+          <div *ngIf="cardNumberRef.invalid && cardNumberRef.touched" class="error">
+            <p *ngIf="cardNumberRef.errors?.['required']">El número es obligatorio.</p>
+            <p *ngIf="cardNumberRef.errors?.['pattern']">Debe contener solo 16 dígitos.</p>
+          </div>
+      
+          <label for="pinNumber">PIN</label>
+          <input
+            id="pinNumber"
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            pattern="^[0-9]{4}$"
+            maxlength="4"
+            required
+            #passwordRef="ngModel"
+          />
+          <div *ngIf="passwordRef.invalid && passwordRef.touched" class="error">
+            <p *ngIf="passwordRef.errors?.['required']">El PIN es obligatorio.</p>
+            <p *ngIf="passwordRef.errors?.['pattern']">Debe tener 4 dígitos numéricos.</p>
+          </div>
+      
+          <button type="submit" [disabled]="!loginForm.form.valid">Iniciar Sesión</button>
+        </form>
+      </div>
+
+</div>
+
+  
