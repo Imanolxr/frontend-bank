@@ -3,7 +3,6 @@ import { RouterOutlet, Router } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CommonModule } from '@angular/common'; 
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   trigger,
@@ -22,7 +21,7 @@ import {
     NavbarComponent, 
     SidebarComponent, 
     CommonModule,  
-    NoopAnimationsModule
+    
     
   ],  
   templateUrl: './app.component.html',
@@ -30,16 +29,40 @@ import {
   animations: [
     trigger('routeAnimations', [
       transition('* <=> *', [
-        query(':enter, :leave', style({ position: 'absolute', width: '100%' }), {
-          optional: true
-        }),
+        // Definir estilos de entrada y salida
+        query(':enter, :leave', 
+          style({
+            position: 'absolute', 
+            width: '100%', 
+            top: 0, 
+            left: 0, 
+            opacity: 0,  // Empieza invisible
+            visibility: 'hidden' // Iniciar oculto
+          }), 
+          { optional: true }
+        ),
+        
         group([
+          // Animación de salida
           query(':leave', [
-            animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)', style({ opacity: 0, transform: 'translateY(-10px)' }))
+            animate('500ms ease-out', style({
+              opacity: 0,
+              visibility: 'hidden', // Desaparece cuando se va
+              transform: 'translateY(30px)' // Un pequeño movimiento al salir
+            }))
           ], { optional: true }),
+  
+          // Animación de entrada
           query(':enter', [
-            style({ opacity: 0, transform: 'translateY(20px)' }),
-            animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)', style({ opacity: 1, transform: 'translateY(0)' }))
+            style({
+              opacity: 0,
+              visibility: 'visible', // Hace visible el componente
+              transform: 'translateY(30px)' // Empieza desplazado para el efecto
+            }),
+            animate('500ms ease-out', style({
+              opacity: 1,
+              transform: 'translateY(0)' // Regresa al lugar
+            }))
           ], { optional: true })
         ])
       ])

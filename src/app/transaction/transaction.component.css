@@ -1,3 +1,89 @@
+/* Contenedor principal */
+.transaction-container {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Título principal */
+  .transaction-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Contenedor para el botón */
+  .button-container {
+    margin-bottom: 20px;
+    text-align: right;
+  }
+  
+  /* Estilo del botón */
+  .btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Contenedor de la tabla con fondo blanco y opacidad */
+  .table-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Blanco con opacidad */
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Tabla de transacciones */
+  .transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .transaction-table th, .transaction-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .transaction-table th {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  .transaction-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Estilo para el monto de crédito (si se aplica) */
+  .transaction-table .credit {
+    color: red; /* Color rojo para los montos negativos */
+    font-weight: bold;
+  }
 
+  .transfer-title {
+    font-size: 2rem; /* Tamaño de fuente grande */
+    font-weight: 600; /* Negrita pero no tan fuerte */
+    color: #fff; /* Color blanco para el texto */
+    text-align: center; /* Centrado */
+    background-color: #2c3e50; /* Fondo color naranja (puedes ajustar el tono) */
+    padding: 15px; /* Espaciado dentro del contenedor */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para un efecto moderno */
+    margin: 20px 0; /* Márgenes superior e inferior */
+    text-transform: uppercase; /* Mayúsculas para mayor impacto */
+    letter-spacing: 1px; /* Espaciado entre letras */
+  }
+  
   
   

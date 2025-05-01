@@ -5,13 +5,25 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { filter } from 'rxjs/operators';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  trigger,
+  transition,
+  style,
+  animate
+} from '@angular/animations';
 
 
 @Component({
   selector: 'app-new-transaction',
   standalone: true,
-  
+  animations: [
+    trigger('fadeOutOnLeave', [
+      transition(':leave', [
+        animate('400ms ease-in', style({ opacity: 0, transform: 'translateY(-20px)' }))
+      ])
+    ])
+  ],
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './new-transaction.component.html',
   styleUrl: './new-transaction.component.css'
@@ -35,10 +47,10 @@ export class NewTransactionComponent {
     });
 
     this.router.events.pipe(
-      filter(event => event instanceof NavigationStart)
-    ).subscribe(() => {
-      this.showTransaction = false;
-    });
+    filter(event => event instanceof NavigationStart)
+  ).subscribe(() => {
+    this.showTransaction = false;
+  });
   }
 
   validateAmountAgainstBalance(control: any) {

@@ -1,0 +1,29 @@
+<div class="movements-container">
+    <!-- Título de la sección -->
+    <h2 class="movements-title">Movimientos</h2>
+  
+    <!-- Tabla de movimientos -->
+    <div class="table-container">
+      <table class="movements-table">
+        <thead>
+          <tr>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of transactions">
+            <td>{{ transaction.movement.originCard }} - {{ transaction.movement.nameOriginCard }}</td>
+            <td>{{ transaction.movement.destinyCard }} - {{ transaction.movement.nameDestinyCard }}</td>
+            <td [ngClass]="{ 'negative': !transaction.credit, 'positive': transaction.credit }">
+              {{ transaction.credit ? '+' : '-' }}{{ transaction.movement.amount | number: '1.2-2' }}
+            </td>
+            <td>{{ transaction.movement.dateTime | date:'MM/dd/yy, HH:mm' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
