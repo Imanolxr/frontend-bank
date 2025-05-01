@@ -1,11 +1,19 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-transaction',
-  imports: [],
+  standalone: true,
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './transaction.component.html',
-  styleUrl: './transaction.component.css'
+  styleUrls: ['./transaction.component.css']
 })
 export class TransactionComponent {
-
+  
+  
+  
 }
+

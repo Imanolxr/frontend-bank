@@ -1,0 +1,40 @@
+
+<div *ngIf="showTransaction" @fadeOutOnLeave>
+<div class="saldo-card">
+    <p class="saldo-label">Saldo disponible</p>
+    <p class="saldo-valor">{{ availableBalance | currency:'USD':'symbol' }}</p>
+  </div>
+  
+  
+  <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="cardNumber">Número Tarjeta Destino:</label>
+      <input id="cardNumber" formControlName="cardNumber" (input)="formatCardNumber($event)" placeholder="#### #### #### ####">
+      <div *ngIf="transactionForm.get('cardNumber')?.hasError('invalidCard') && transactionForm.get('cardNumber')?.touched">
+        <p>El número de tarjeta debe tener 16 dígitos.</p>
+      </div>
+      
+    </div>
+  
+    <div>
+      <label for="amount">Importe a Enviar:</label>
+      <input id="amount" formControlName="amount" (input)="formatAmount($event)" placeholder="$">
+      <div *ngIf="transactionForm.get('amount')?.errors?.['min'] && transactionForm.get('amount')?.touched">
+        <p>El importe debe ser mayor que $0.10.</p>
+      </div>
+      
+      <div *ngIf="transactionForm.get('amount')?.errors?.['pattern'] && transactionForm.get('amount')?.touched">
+        <p>El importe debe tener hasta 2 decimales y ser un número válido.</p>
+      </div>
+      
+      <div *ngIf="transactionForm.get('amount')?.errors?.['exceedsBalance'] && transactionForm.get('amount')?.touched">
+        <p class="text-danger mt-1">El monto no puede superar el saldo disponible (${{ availableBalance }})</p>
+      </div>
+      
+      
+
+    </div>
+  
+    <button type="submit" [disabled]="transactionForm.invalid">Enviar</button>
+  </form>
+</div>

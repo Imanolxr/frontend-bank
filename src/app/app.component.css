@@ -1,7 +1,21 @@
+.layout {
+  display: flex;
+  margin-top: 64px; /* altura navbar */
+  overflow: hidden;
+}
+
 .main-content {
-  margin-left: 250px; /* Deja espacio para el sidebar */
-  margin-top: 64px;   /* Deja espacio para el navbar */
+  flex-grow: 1;
   padding: 20px;
   position: relative;
   z-index: 1;
+  overflow: hidden;
 }
+
+app-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
