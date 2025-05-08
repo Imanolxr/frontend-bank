@@ -1,90 +1,89 @@
 /* Contenedor general centrado */
 .login-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-image: url('/assets/images/suquia logo.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 20px;
-  }
-  
-  /* Contenedor del formulario */
-  .login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  /* Título de bienvenida */
-  .welcome-title {
-    font-size: 42px;
-    margin-bottom: 40px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-    text-align: center;
-    color: #ffffff;
-  }
-  
-  /* Formulario */
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding: 30px;
-    border-radius: 12px;
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    width: 100%;
-  }
-  
-  /* Subtítulo del formulario */
-  form h2 {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  /* Etiquetas */
-  label {
-    font-weight: 600;
-    margin-bottom: 4px;
-    color: #555;
-  }
-  
-  /* Inputs */
-  input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    transition: border-color 0.3s ease;
-  }
-  
-  input:focus {
-    border-color: #007acc;
-    outline: none;
-  }
-  
-  /* Botón */
-  button {
-    margin-top: 10px;
-    padding: 12px;
-    font-size: 16px;
-    background-color: #007acc;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #005fa3;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: url('/assets/images/suquia logo.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px;
+}
+
+/* Contenedor del formulario */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Título de bienvenida */
+.welcome-title {
+  font-size: 42px;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+/* Subtítulo del formulario */
+form h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Etiquetas */
+label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+/* Inputs */
+input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #007acc;
+  outline: none;
+}
+
+/* Botón */
+button {
+  margin-top: 10px;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #005fa3;
+}

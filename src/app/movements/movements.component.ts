@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { NgClass } from '@angular/common'; 
 import { RouterModule } from '@angular/router';
+import { TransactionService } from '../transaction/services/transaction.service'; 
+import { TransactionDTO } from '../models/transaction.model';
 
 
 
@@ -15,35 +17,24 @@ import { RouterModule } from '@angular/router';
 })
 export class MovementsComponent implements OnInit {
 
-  transactions = [
-    {
-      movement: {
-        dateTime: '2025-04-29T10:00:00',
-        originCard: '1234 5678 9876 5432',
-        nameOriginCard: 'Tarjeta Banco',
-        destinyCard: '2345 6789 8765 4321',
-        nameDestinyCard: 'Tarjeta Suquia',
-        amount: 1500.00,
-      },
-      credit: true // Movimiento recibido
-    },
-    {
-      movement: {
-        dateTime: '2025-05-01T14:30:00',
-        originCard: '2345 6789 8765 4321',
-        nameOriginCard: 'Tarjeta Suquia',
-        destinyCard: '1234 5678 9876 5432',
-        nameDestinyCard: 'Tarjeta Banco',
-        amount: 2000.00,
-      },
-      credit: false // Movimiento realizado
-    }
-    // Agrega más transacciones según sea necesario
-  ];
+  transactions: TransactionDTO[] = [];
 
-  constructor() { }
+  constructor(private transactionService: TransactionService) { }
 
   ngOnInit(): void {
+    this.loadMovements();
+
+  }
+
+  loadMovements(): void {
+    this.transactionService.getAllMovements().subscribe({
+      next: (data) => {
+        this.transactions = data;
+      },
+      error: (error) => {
+        console.error('Error al cargar los movimientos:', error);
+      }
+    });
   }
 
   viewDetails(transaction: any) {

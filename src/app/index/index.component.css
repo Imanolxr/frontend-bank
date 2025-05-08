@@ -1,0 +1,9 @@
+.charts-container {
+    display: flex;
+    justify-content: center;    /* Centra horizontalmente */
+    align-items: flex-start;    /* Alinea arriba si uno es más alto */
+    gap: 40px;                  /* Espacio entre los gráficos */
+    flex-wrap: wrap;            /* Se adaptan en pantallas pequeñas */
+    padding: 20px;
+  }
+  

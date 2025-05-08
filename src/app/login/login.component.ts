@@ -1,32 +1,66 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']  
+  styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  cardNumber: string = '';
-  password: string = '';
+  loginForm: FormGroup;
+  errorMessage: string = '';
+  isLoading: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    // Inicializar formulario de login
+    this.loginForm = this.fb.group({
+      cardNumber: ['', [Validators.required, Validators.pattern(/^[0-9]{16}$/)]],
+      pin: ['', [Validators.required, Validators.pattern(/^[0-9]{4}$/)]]
+    });
+  }
 
-  onSubmit() {
-    if (this.cardNumber === '1234567812345678' && this.password === '1234') {
-      // Guardar token ficticio en localStorage
-      localStorage.setItem('authToken', 'faketoken'); // Guarda el token
-  
-      // Redirigir al usuario a la página de índice
+  onSubmit(): void {
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.isLoading = true;
+    this.errorMessage = '';
+    
+    const { cardNumber, pin } = this.loginForm.value;
+
+console.log('Intentando login con:', { cardNumber, pin: '****' });
+
+this.authService.login(cardNumber, pin).subscribe({
+  next: (response) => {
+    console.log('Login exitoso, respuesta completa:', response);
+    this.isLoading = false;
+    setTimeout(() => {
       this.router.navigate(['/index']);
+    }, 100);
+    
+  },
+  error: (error) => {
+    this.isLoading = false;
+    if (error.status === 401) {
+      this.errorMessage = 'Número de tarjeta o PIN incorrecto';
+    } else if (error.status === 0) {
+      this.errorMessage = 'Error de conexión al servidor. Verifique su conexión a Internet.';
+    } else if (error.error && error.error.message) {
+      this.errorMessage = `Error: ${error.error.message}`;
     } else {
-      alert('Número de tarjeta o PIN incorrecto');
+      this.errorMessage = `Error al iniciar sesión (${error.status || 'desconocido'}). Intente nuevamente.`;
     }
   }
-  
-  
+});
+  }
 }

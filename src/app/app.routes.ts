@@ -12,6 +12,8 @@ export const routes: Routes = [
   { path: 'index', component: IndexComponent, canActivate: [AuthGuard] },
   { path: 'transaction', component: TransactionComponent, canActivate: [AuthGuard], data: { animation: 'TransactionPage' } },
   { path: 'newTransaction', component: NewTransactionComponent, canActivate: [AuthGuard], data: { animation: 'NewTransactionPage' }},
-  { path: 'movements', component: MovementsComponent, canActivate: [AuthGuard], data: { animation: 'NewTransactionPage' }} 
+  { path: 'movements', component: MovementsComponent, canActivate: [AuthGuard], data: { animation: 'NewTransactionPage' }},
+  { path: '**', redirectTo: '/login' }
+
 
 ];

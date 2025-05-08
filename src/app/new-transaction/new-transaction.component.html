@@ -9,10 +9,15 @@
   <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
     <div>
       <label for="cardNumber">Número Tarjeta Destino:</label>
-      <input id="cardNumber" formControlName="cardNumber" (input)="formatCardNumber($event)" placeholder="#### #### #### ####">
+      <input id="cardNumber" formControlName="cardNumber" (input)="formatCardNumber($event)" (blur)="checkCardExists()" placeholder="#### #### #### ####">
       <div *ngIf="transactionForm.get('cardNumber')?.hasError('invalidCard') && transactionForm.get('cardNumber')?.touched">
         <p>El número de tarjeta debe tener 16 dígitos.</p>
       </div>
+      <div *ngIf="transactionForm.get('cardNumber')?.hasError('serverError') && transactionForm.get('cardNumber')?.touched">
+        <p class="text-danger">Ocurrió un error al verificar la tarjeta. Intenta más tarde.</p>
+      </div>
+      
+      
       
     </div>
   

@@ -1,17 +1,27 @@
 <div class="transaction-container">
     <h1 class="transfer-title">Listado de Transferencias</h1>
   
-    <!-- Botón de nueva transferencia que redirige a newTransaction -->
-    <div class="button-container">
+    <div class="top-bar">
+      <!-- Botón de nueva transferencia -->
+      <div class="button-container">
         <button class="btn" [routerLink]="['/newTransaction']">Nueva Transferencia</button>
+      </div>
+    
+      <!-- Filtro por mes -->
+      <div class="filter-container">
+        <label for="month">Filtrar por mes:</label>
+        <select id="month" [(ngModel)]="selectedMonth" (change)="loadTransactions()" class="month-select">
+          <option *ngFor="let m of months" [value]="m.value">{{ m.name }}</option>
+        </select>
+      </div>
     </div>
+    
   
     <!-- Tabla de transacciones -->
     <div class="table-container">
       <table class="transaction-table">
         <thead>
           <tr>
-            <th>Origen</th>
             <th>Destino</th>
             <th>Monto</th>
             <th>Fecha</th>
@@ -19,7 +29,6 @@
         </thead>
         <tbody>
           <tr *ngFor="let transaction of transactions">
-            <td>{{ transaction.originCard }} - {{ transaction.nameOriginCard }}</td>
             <td>{{ transaction.destinyCard }} - {{ transaction.nameDestinyCard }}</td>
             <td [class.credit]="transaction.credit">{{ transaction.amount | currency:'USD' }}</td>
             <td>{{ transaction.dateTime | date:'MM/dd/yy, HH:mm' }}</td>

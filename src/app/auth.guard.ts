@@ -1,29 +1,28 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from './service/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+  
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
+  
+  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    console.log('AuthGuard: hasToken =', this.authService.hasToken());
 
-  constructor(private router: Router) {}
-
-  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    // Comprobar si estamos en el navegador antes de acceder a localStorage
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('authToken'); // Obtener el token desde localStorage
-
-      if (token) {
-        return true; // El usuario está autenticado
-      } else {
-        // Si no hay token, redirigir al login
-        this.router.navigate(['/login']);
-        return false;
-      }
+    if (this.authService.hasToken()) {
+      return true;
     }
-
-    // En caso de que no estemos en el navegador, bloquear el acceso
+    
+    // Si no está autenticado, redirigir al login
+    
+    this.router.navigate(['/login']);
     return false;
   }
 }

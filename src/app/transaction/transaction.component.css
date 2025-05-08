@@ -65,11 +65,7 @@
     background-color: #f1f1f1;
   }
   
-  /* Estilo para el monto de crédito (si se aplica) */
-  .transaction-table .credit {
-    color: red; /* Color rojo para los montos negativos */
-    font-weight: bold;
-  }
+
 
   .transfer-title {
     font-size: 2rem; /* Tamaño de fuente grande */
@@ -84,6 +80,42 @@
     text-transform: uppercase; /* Mayúsculas para mayor impacto */
     letter-spacing: 1px; /* Espaciado entre letras */
   }
+
+  /* Contenedor superior con botón y filtro en la misma línea */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Para que no se rompa en pantallas pequeñas */
+}
+
+/* Filtro de mes alineado */
+.filter-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Selector moderno */
+.month-select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+.month-select:focus {
+  border-color: #007bff;
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+}
+
+
+  
   
   
   
